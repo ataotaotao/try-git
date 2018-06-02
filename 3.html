@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title>tao  html</title>
+		<style>
+			body,ul,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0;}
+			ul{list-style:none;}
+			a{text-decoration:none;color:#000;}
+			.clearfix:after{display:none;clear:both;content:'';}
+			.fl{float:left;}
+			.fr{float:right;}
+		</style>
+	</head>
+    <body>
+		<div id="box"></div>
+
+		<script>
+			var	 oBox = document.getElementById('box');
+				
+			var hello = 'ok';
+			String.prototype.repeatful = String.prototype.repeatful || function(num){
+				var str = '';
+				str = `${this} ${this}  ${this}`;
+				return str;
+			}
+
+
+
+			var str = 'hello world';
+			var strs = str.repeatful(3);
+			console.log( strs );
+
+
+			var fn = (x = 20,y = 30) => {
+				var a = 20;
+				var b = 30;
+				return a+b+x+y;
+			};
+
+			var r = fn( );
+
+			console.log( r );
+
+
+			var arr = [1,2,3,3,4,5];
+			console.log( arr.keys() );
+
+			for ( key of arr.keys() );
+			{
+				console.log( key );
+			}
+
+			var c = arr.copyWithin(1,3,5);
+			console.log( arr );
+			//console.log( ...arr );
+			//var b = ...arr ;
+			//console.log( b );
+
+
+			var arr = [1,3,5,7,8];
+			var r = arr.entries();
+
+			for (key of r )
+			{
+				console.log( key );
+			}
+			
+			
+		</script>
+    </body>
+</html>

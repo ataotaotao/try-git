@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title>tao  html</title>
+		<style>
+			body,ul,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0;}
+			ul{list-style:none;}
+			a{text-decoration:none;color:#000;}
+			.clearfix:after{display:none;clear:both;content:'';}
+			.fl{float:left;}
+			.fr{float:right;}
+			#box{
+				display:flex;
+				/* flex-direction:row;
+				flex-wrap:wrap-reverse; */
+				flex-flow:row wrap;
+				justify-content:center;
+				/* align-items:flex-start; */
+				align-content:stretch  ;
+
+				width:500px;
+				height:500px;
+				border:1px solid red;
+				margin: 0 auto;
+			}
+			#box p{
+				width:40px;
+				/* height:40px; */
+				background-color:green;
+				margin:5px;
+			}
+		</style>
+	</head>
+    <body>
+		<div id="box">
+		<p></p>
+			<p>1</p>
+			<p>2</p>
+			<p>3</p>
+			<p>4</p>
+			<p>5</p>
+			<p>6</p>
+			<p>7</p>
+			<p>8</p>
+			<p>9</p>
+			<p>10</p>
+			<p>11</p>
+			<p>12</p>
+			<p>13</p>
+			<p>14</p>
+		</div>
+			
+		<script>
+			const oBox = document.getElementById('box'),
+				p = oBox.getElementsByTagName('p');
+			console.log( oBox );
+			console.log( p );
+
+
+			var bool = 'ok';
+			console.log( !!bool );
+		</script>
+    </body>
+</html>

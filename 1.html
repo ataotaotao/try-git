@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title>tao  html</title>
+		<style>
+			body,ul,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0;}
+			ul{list-style:none;}
+			a{text-decoration:none;color:#000;}
+			.clearfix:after{display:none;clear:both;content:'';}
+			.fl{float:left;}
+			.fr{float:right;}
+			#box{
+				position:absolute;
+				left:100px;
+				width:100px;
+				height:100px;
+				background-color:red;
+			}
+		</style>
+	</head>
+    <body>
+		<div id="box"></div>
+
+		<script>
+			var oBox = document.getElementById('box');
+			var timer = null;//如果知道一个变量后面的赋值是对象的话，先赋值为null
+
+			
+
+			//function go(){
+			//	var name = 123;
+			//	var fn = ()=>{
+			//		console.log(this);
+			//	}
+			//	fn();
+			//}
+			//go.call({name:'ergou'});
+
+			
+			(function go(obj){
+				var left = oBox.offsetLeft;
+				if( left >= 500){
+					left = 500;
+					clearTimeout( timer );
+				}
+				obj.style.left += left +  20 +'px';
+
+				timer = setTimeout( go , 1000 );
+			})(oBox);
+			
+		</script>
+    </body>
+</html>

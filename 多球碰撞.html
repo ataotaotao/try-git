@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>demo</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link href=" " rel="stylesheet">
+        <style>
+            body,p{
+                margin:0;
+                padding:0;
+            }
+            #box p{
+                position:absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+    </body>
+    <script>
+        var oBox = document.getElementById('box');
+        var aP   = document.getElementsByTagName('p');
+        var num = 10;
+        var arrX = [];
+        var arrY = [];
+        var init_l = [];//存放每一个创建出来的p的left和top值
+        var init_t = [];
+
+        //小球创建   速度随机
+        for(var i=0;i<num;i++){
+            createBall();
+            arrX[i] = random(2,10);
+            arrY[i] = random(2,10);
+
+        }
+        var aP   = document.getElementsByTagName('p');
+
+        //console.log(arrX,arrY);
+        //console.log(arrX,arrY);
+        for(var i=0;i<aP.length;i++){
+            init_l[i] = aP[i].offsetLeft;
+            init_t[i] = aP[i].offsetTop;
+        }
+
+        var width = aP[0].offsetWidth;
+        var maxT = document.documentElement.clientHeight - width;
+        var maxL = document.documentElement.clientWidth - width;
+
+        //console.log(init_l);
+        //小球运动
+        (function run(){
+
+            for(var i=0;i<aP.length;i++){
+
+                //这个是让小球运动
+                init_l[i] += arrX[i];
+                init_t[i] += arrY[i];
+                //console.log(init_l[i],arrX[i]);
+
+                init_l[i] = Math.max(init_l[i],0);
+                init_l[i] = Math.min(init_l[i],maxL);
+                init_t[i] = Math.max(init_t[i],0);
+                init_t[i] = Math.min(init_t[i],maxT);
+
+                //反弹  //限定范围
+                if( init_l[i] == 0 || init_l[i] == maxL){
+                    arrX[i] = - arrX[i];
+                }
+
+                if( init_t[i] == 0 || init_t[i] == maxT){
+                    arrY[i] = - arrY[i];
+                }
+
+
+                //判断撞击和撞击之后做的事儿
+                if(hit()[0]){
+                    console.log(1);
+                }
+
+
+
+                aP[i].style.left = init_l[i] + 'px';
+                aP[i].style.top = init_t[i]+ 'px';
+            }
+            requestAnimationFrame(run);
+        })()
+
+        //判断是否撞击,返回true或者false，true表示撞击
+        function hit(){
+            for(var i = 0;i<num;i++){
+                for(var j=0;j<num;j++){
+                    while(i !== j){
+                        if(caculate([init_l[i],init_t[i]],[init_l[j],init_t[j]]) === Math.pow(width,2)){
+                            return [true,i,j];
+                        }else{
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+         //用来计算两个点之间的距离
+        function caculate([x,y],[a,b]){
+            var sqrt1 = Math.pow(x-a,2);
+            var sqrt2 = Math.pow(y-b,2);
+            var num =  sqrt1+sqrt2;//计算出平方和
+            return num;
+        }
+
+        //撞击之后做的事儿
+
+        function move(){
+
+        }
+
+        //创建小球
+        function createBall(){
+            var p = document.createElement('p');
+            p.style.cssText = 'width:50px;height:50px;background-color:'+color()+';border-radius:50%';
+            oBox.appendChild(p);
+        }
+
+
+        //随机颜色值rgba
+        function color(){
+            var arr = [];
+            for(var i=0;i<3;i++){
+                arr[i]=Math.round(Math.random()*255);
+            }
+            return 'rgb('+arr[0]+','+arr[1]+','+arr[2]+')';
+        }
+
+        //计算随机值
+        function random(x,y){
+            return x>y?Math.round(Math.random()*(x-y)+y):Math.round(Math.random()*(y-x)+x);
+        }
+
+
+    </script>
+</html>

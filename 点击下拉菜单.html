@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>demo</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link href=" " rel="stylesheet">
+        <style>
+            body,ul,h3,p{
+                margin:0;
+                padding:0;
+            }
+			ul{
+				list-style:none;
+			}
+            #box{
+                width:1210px;
+                text-align:center;
+                line-height:40px;
+                margin:50px auto;
+            }
+			#box ul{
+				width:1210px;
+			}
+            #box ul li{
+				float:left;
+				position:relative;
+                width:400px;
+                height:40px;
+            }
+			#box ul li:nth-child(2){
+				margin:0 5px;
+			}
+			#box ul li h3{
+				background-color:#1cffff;
+				color:#402000;
+				font-size:20px;
+				font-weight:bold;
+			}
+			#box ul li .hid-list{
+				position:absolute;
+				left:0;
+				right:0;
+				margin:auto;
+				top:40px;
+			}
+			.hid-list p{
+				height:40px;
+				background-color:#22ff22;
+			}
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li>
+                    <h3>大佬</h3>
+                    <div class="hid-list">
+                        <p>小青年</p>
+                        <p>离殇</p>
+                        <p>小兔子</p>
+                    </div>
+                </li>
+                <li>
+                    <h3>学神</h3>
+                    <div class="hid-list">
+                        <p>小青年</p>
+                        <p>离殇</p>
+                        <p>小兔子</p>
+                    </div>
+                </li>
+                <li>
+                    <h3>菜鸟</h3>
+                    <div class="hid-list">
+                        <p>南柯</p>
+                        <p>南柯</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+		<script type="text/javascript" src='js/jQuery.js'></script>
+		<script type="text/javascript">
+
+            var d = new Date();
+			//鼠标移动到p上面
+			$('p').hover(function(){
+					$(this).css({
+						backgroundColor:'#000',
+						color:'#22ff22'
+					})
+				},function(){
+					$(this).css({
+						backgroundColor:'#22ff22',
+						color:'#000'
+					})
+				});
+			//默认收起来
+			$('.hid-list').slideToggle(1000,'linear',false);
+			//点击h3变化
+			$('li').on('click',function(){
+                var t = new Date() - d;
+                //console.log( t );
+                if(t < 1000){
+                    return false;
+                }else{
+                    d = new Date();//在t>1000之后再延时。
+                    var index = $(this).index();
+                    //console.log(index);
+                    $('.hid-list').eq(index).slideToggle(1000,'linear');
+                    //将这个li所有兄弟li下面的hid-list收起来
+                    $('.hid-list',$(this).siblings()).slideUp(1000,'linear');
+                }
+			});
+			$('.hid-list').on('click',function(e){
+				e.stopPropagation();
+			});
+
+			//除去选中文字默认
+
+			$('html').on('selectstart',function(){
+				return false;
+			})
+		</script>
+    </body>
+</html>

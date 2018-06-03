@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style type="text/css">
+	body,ul{
+		margin:0;
+		padding:0;
+	}
+	ul{
+		list-style:none;
+	}
+	#box{
+		position:relative;
+		width:1130px;
+		height:500px;
+		margin:50px auto;
+	}
+	#box ul li{
+		display:none;
+		position:absolute;
+		left:0;
+		top:0;
+	}
+	#box ul li img{
+		width:1130px;
+		height:500px;
+	}
+	#box ul li.on{
+		display:block;
+	}
+	#box .button{
+		position:absolute;
+		left:0;
+		right:0;
+		margin:auto;
+		bottom:20px;
+		width:260px;
+		height:7px;
+	}
+	#box .button span{
+		float:left;
+		width:40px;
+		height:5px;
+		border:1px solid green;
+		margin: 0 5px;
+		/* background-color:green; */
+	}
+	#box p{
+		position:absolute;
+		top:calc(50% - 25px);
+		width:50px;
+		background-color:rgba(0,0,0,.5);
+		line-height:60px;
+		text-align:center;
+		color:#fff;
+		cursor:pointer;
+	}
+	#box p:nth-of-type(1){
+		left:0;
+	}
+	#box p:nth-of-type(2){
+		right:0;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="box" onselectstart='return false;'>
+		<ul>
+			<li>
+				<img src="images/1.jpg" alt="" width='1130' height='500'/>
+			</li>
+			<li>
+				<img src="images/2.jpg" alt="" width='1130' height='500'/>
+			</li>
+			<li>
+				<img src="images/3.webp" alt="" width='1130' height='500'/>
+			</li>
+			<li>
+				<img src="images/4.webp" alt="" width='1130' height='500'/>
+			</li>
+			<li>
+				<img src="images/5.webp" alt="" width='1130' height='500'/>
+			</li>
+		</ul>
+		<div class="button">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<p>&lt;</p>
+		<p>&gt;</p>
+	</div>
+ </body>
+ <script type="text/javascript">
+	var aLi = document.getElementsByTagName('li');
+	var aBtn = document.getElementsByTagName('span');
+	var aP = document.getElementsByTagName('p');
+
+
+	aLi[0].style.display = 'block';
+	aBtn[0].style.backgroundColor = 'green';
+	//点击左右切换
+
+	var num = 0;//用来记录到底是第几张显示出来
+	for(var i=0;i<aP.length;i++){
+		aP[i].index = i;
+		aP[i].onclick = function(){
+			aLi[num].style.display = 'none';
+			aBtn[num].style.backgroundColor = '';
+			if(this.index == 0){
+				num--;
+				if(num < 0){
+					num = 4;
+				}
+			}else{
+				num++;
+				if(num > 4){
+					num = 0;
+				}
+			}
+			aLi[num].style.display = 'block';
+			aBtn[num].style.backgroundColor = 'green';
+		}
+	}
+	//点击btn
+	for(var i=0;i<aBtn.length;i++){
+		aBtn[i].index = i;
+		aBtn[i].onclick = function(){
+			aLi[num].style.display = 'none';
+			aBtn[num].style.backgroundColor = '';
+			aLi[this.index].style.display = 'block';
+			this.style.backgroundColor = 'green';
+			num = this.index;
+		}
+	}
+ </script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>please enter your title</title>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<meta name="Author" content="阿飞老师-潭州学院">
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		
+		<input name="txt" />
+		<div class="wrap on"></div>
+		
+		<script type="text/javascript">
+			/*
+			document.getElementById()
+			document.getElementsByTagName()
+			document.getElementsByName()
+			*/
+			
+			//var oTxt = document.getElementsByName('txt');
+			//alert( oTxt[0] )
+			
+			//var oDiv = document.getElementsByClassName('wrap');
+
+			var oDiv = getClass( 'wrap' );
+
+			alert( oDiv[0] );
+			function getClass( cName ){
+				if ( document.getElementsByClassName )
+				{
+					return document.getElementsByClassName( cName );
+				}
+				var arr = [];
+				var allE = document.getElementsByTagName('*');
+				for ( var i=0;i<allE.length;i++ )
+				{
+					// 'wrap on' == 'wrap'
+					var classArr = allE[i].className.split(' ');
+					for ( var j=0;j<classArr.length;j++ )
+					{
+						if ( classArr[j] == cName )
+						{
+							arr.push( allE[i] );
+							break;
+						}
+					}
+				}
+				return arr;
+			}
+
+		</script>
+	</body>
+</html>

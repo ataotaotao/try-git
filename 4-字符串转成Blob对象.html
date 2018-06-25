@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-追梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 把字符串转换成blob对象
+/*
+        let arr = ['hello','world'];
+        //let blob = new Blob(arr);
+        // blob对象的第一个参数是数组
+        let blob = new Blob(arr,{type:'text/plain'});
+        console.log(blob)
+        */
+        let arr = ['hello','world'];
+        let blob = new Blob(arr,{type:'text/plain'});
+        let newBlob = blob.slice(0,5);  // 0<= n < 5
+        console.log(newBlob)
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+

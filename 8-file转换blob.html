@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-追梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+<body>
+    <script>
+        //
+        // blob -> ArrayBuffer -> blob
+        let blob = new Blob(['追梦'],{type:'text/plain'});
+        console.log(blob)
+        let reader = new FileReader();
+        reader.readAsArrayBuffer(blob);
+        reader.onload = function (e) {
+            console.log(e.target.result) // ArrayBuffer
+            let r = e.target.result;
+            /*let buffer = new Uint8Array(r);
+            console.log(buffer)
+            let blob2 = new Blob([buffer])
+            reader.readAsArrayBuffer(blob2,'utf-8');
+            reader.onload = function (e) {
+                console.log(e.target.result)
+            }*/
+            // 数据视图  dataView
+
+            let dataV = new DataView(r);
+            console.log(dataV)
+            reader.readAsText(new Blob([dataV]),'utf-8')
+            reader.onload = function (e) {
+                console.log(e.target.result)
+            }
+        }
+    </script>
+</body>
+</html>

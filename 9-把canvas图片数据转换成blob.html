@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-追梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 绘制图表
+        let c = document.createElement('canvas');
+        c.style.border = '1px solid green';
+        let cxt = c.getContext('2d');
+        cxt.fillStyle = 'purple';
+        cxt.fillRect(0,0,300,150);
+        cxt.fillStyle = 'yellow';
+        cxt.fillRect(50,50,100,50);
+        document.body.appendChild(c);
+
+        // 把canvas图片数据 转换成 blob对象
+        c.toBlob(function (blob) {
+            console.log(blob)
+            let img = new Image();
+            img.src = window.URL.createObjectURL(blob);
+            img.onload = function () {
+                document.body.appendChild(img)
+            }
+
+            let reader = new FileReader();
+            reader.readAsDataURL(blob,'utf-8');
+            reader.onload = function (e) {
+                console.log(e.target.result)
+                let img = new Image();
+                img.src = e.target.result;
+                img.onload = function () {
+                    document.body.appendChild(img)
+                }
+            }
+        })
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

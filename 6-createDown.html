@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-追梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let str = 'tz-dream';
+        // 调用函数 生成 文件
+        createDownLoad('xyz.txt',str);
+        function createDownLoad(fileName,content) {
+            let blob = new Blob([content],{type:'text/plain'});
+            let link = document.createElement('a');
+            link.innerHTML = content;
+            link.download = fileName;
+            link.href = URL.createObjectURL(blob);
+            link.click();
+        }
+    </script>
+</body>
+</html>

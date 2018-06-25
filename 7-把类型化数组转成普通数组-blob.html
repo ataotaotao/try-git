@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-追梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // typeArray数组里面的值是 0~255之间的无符号的数字
+        let typeArray = new Uint8Array([1,2,3,4]);
+        console.log(typeArray)
+        let arr1 = Array.from(typeArray);  //把视图转成普通的数组
+        console.log(arr1)
+        let arr2 = Array.apply([],typeArray);
+        console.log(arr2)
+
+        // 把ArrayBuffer 转换成blob
+        let arr3 = new ArrayBuffer(12);
+        console.log(arr3)
+        let blob1 = new Blob([arr3],{type:'text/plain'});
+        console.log(blob1)
+
+        // 用视图函数 操作ArrayBuffer
+
+        let arr4 = new ArrayBuffer(12);
+        let arr5 = new Int16Array(arr4);
+        console.log(arr5) // 6
+        let arr6 = new Int32Array(arr4);
+        console.log(arr6)  // 3
+        let blob2 = new Blob(arr6);
+        console.log(blob2)
+    </script>
+</body>
+</html>

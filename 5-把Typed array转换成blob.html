@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-追梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const str = 'zhuimeng真牛逼';
+        let arr = [];
+        for( let i=0;i<str.length;i++ ){
+            arr[i] = str.charCodeAt(i); // ASCII码
+        }
+        console.log(arr)
+        let arr1 = new Uint8Array(arr);
+        console.log(arr1)
+
+        // 把这种类型化数组 转成成blob对象
+        let blob = new Blob([arr1],{type:'text/plain'});
+        console.log(blob)
+        let reader = new FileReader();
+        reader.readAsText(blob,'utf-8');
+        reader.onload = function (e) {
+            console.log(e.target.result)
+            let data = e.target.result;
+            let blob2 = new Blob([data],{type:'application/vnd.ms-excel'});
+            // 介质
+            let link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob2);
+            link.download = 'abc.xls';
+            link.click();
+        }
+    </script>
+</body>
+</html>
